@@ -1,10 +1,8 @@
-# citrine_demo
+# Citrine Demo
+## Deployed Link
+http://guarded-tundra-42177.herokuapp.com/units/si?units=(degree/(minute*hectare))
 
-[![Build Status](https://travis-ci.org/playframework/citrine_demo.svg?branch=2.6.x)](https://travis-ci.org/playframework/citrine_demo)
-
-This example shows form processing and form helper handling under Play 2.6.x.
-
-## How to run
+## How to run locally
 
 Start the Play app:
 
@@ -14,6 +12,3 @@ sbt run
 
 And open [http://localhost:9000/](http://localhost:9000/)
 
-## Credits
-
-Originally written by Chris Birchall and the Guardian Team: <https://github.com/cb372/play-forms-tutorial>.  Much thanks, especially for the [article](https://www.theguardian.com/info/developer-blog/2015/dec/30/how-to-add-a-form-to-a-play-application).
