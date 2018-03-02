@@ -11,8 +11,9 @@ object ConversionForm {
 
   val form = Form(
     mapping(
-      "units" -> nonEmptyText.verifying("error.invalid", v => {
-        true
+      "units" -> nonEmptyText.verifying("error.invalid.Symbol.Unit.Operator", v => {
+        val t = v.split("[\\(\\)\\/\\*]").filter(b => !validSymbol.contains(b) && b != "")
+        t.isEmpty
       })
     )(Data.apply)(Data.unapply)
   )

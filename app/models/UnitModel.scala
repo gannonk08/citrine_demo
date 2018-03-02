@@ -33,52 +33,6 @@ object UnitModel {
 
   val validUnits = mutable.Seq(minute, hour, day, degree, minAngle, second, hectare, litre, tonne)
 
-  val replMulitplications = Map(
-    minute.name -> minute.multiplicationFactor,
-    hour.name -> hour.multiplicationFactor,
-    day.name -> day.multiplicationFactor,
-    degree.name -> degree.multiplicationFactor,
-    minAngle.name -> minAngle.multiplicationFactor,
-    second.name -> second.multiplicationFactor,
-    hectare.name -> hectare.multiplicationFactor,
-    litre.name -> litre.multiplicationFactor,
-    tonne.name -> tonne.multiplicationFactor,
-    minute.symbol -> minute.multiplicationFactor,
-    hour.symbol -> hour.multiplicationFactor,
-    day.symbol -> day.multiplicationFactor,
-    degree.symbol -> degree.multiplicationFactor,
-    minAngle.symbol -> minAngle.multiplicationFactor,
-    second.symbol -> second.multiplicationFactor,
-    hectare.symbol -> hectare.multiplicationFactor,
-    litre.symbol -> litre.multiplicationFactor,
-    tonne.symbol -> tonne.multiplicationFactor
-  )
-
-  val replUnits = Map(
-    minute.name -> minute.unit,
-    hour.name -> hour.unit,
-    day.name -> day.unit,
-    degree.name -> degree.unit,
-    minAngle.name -> minAngle.unit,
-    second.name -> second.unit,
-    hectare.name -> hectare.unit,
-    litre.name -> litre.unit,
-    tonne.name -> tonne.unit,
-    minute.symbol -> minute.unit,
-    hour.symbol -> hour.unit,
-    day.symbol -> day.unit,
-    degree.symbol -> degree.unit,
-    minAngle.symbol -> minAngle.unit,
-    second.symbol -> second.unit,
-    hectare.symbol -> hectare.unit,
-    litre.symbol -> litre.unit,
-    tonne.symbol -> tonne.unit
-  )
-//  val regex = validUnits.map(c => s"${c.name}|${c.symbol}").mkString("|").r
-//  regex.replaceAllIn("123 Main bar", "x")
-
-//  degree/minute
-
   def extractName(queryString: String, i: Int): String = {
     val unitModel = validUnits(i)
     val strWithName = queryString.replace(s"${unitModel.name}",s"${unitModel.multiplicationFactor}")
@@ -100,17 +54,6 @@ object UnitModel {
       strWithSymbol
     }
   }
-
-//  def extractUnit(queryString: String, i: Int): String = {
-//    val unitModel = validUnits(i)
-//    val strWithName = queryString.replace(s"${unitModel.name}",s"${unitModel.unit}")
-//    if(validUnits.length-1 != i){
-//      val newI = i + 1
-//      extractUnit(strWithName,newI)
-//    } else {
-//      strWithName
-//    }
-//  }
 
   def extractUnit(queryString: String, i: Int): String = {
     val unitModel = validUnits(i)

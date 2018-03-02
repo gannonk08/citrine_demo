@@ -14,18 +14,15 @@ class ConversionController @Inject()(cc: MessagesControllerComponents) extends M
   import javax.script.ScriptEngine
   import javax.script.ScriptEngineManager
 
-
-
-
-
+  def badRequestJson(str: String) = Json.obj(
+    "status" -> "KO",
+    "msg" -> str
+  )
 
   def convertUnits = Action { implicit request =>
     form.bindFromRequest.fold(
     formWithErrors => {
-      val json = Json.obj(
-      "status" -> "KO",
-      "msg" -> formWithErrors.errors.map(_.message).mkString(", ")
-      )
+      val json = badRequestJson(formWithErrors.errors.map(_.message).mkString(", "))
       render {
           case Accepts.Json() => BadRequest(json)
           case Accepts.JavaScript() => BadRequest(s"${formWithErrors("callback").value.getOrElse("callback")}(${json.toString});").as(JAVASCRIPT)
@@ -40,14 +37,16 @@ class ConversionController @Inject()(cc: MessagesControllerComponents) extends M
 
       val manager = new ScriptEngineManager
       val engine = manager.getEngineByName("js")
-      val conversion = engine.eval(fullReplaceWithNumbers)
-
-      val json = Json.obj(
-        "unit_name" -> fullReplaceWithUnit,
-        "multiplication_factor" -> BigDecimal.apply(conversion.toString)
-      )
-
+      try{
+        val conversion = engine.eval(fullReplaceWithNumbers)
+        val json = Json.obj(
+          "unit_name" -> fullReplaceWithUnit,
+          "multiplication_factor" -> BigDecimal.apply(conversion.toString)
+        )
         Ok(json)
+      } catch {
+        case _ : Throwable => BadRequest(badRequestJson("error.invalid.equation"))
+      }
       }
     )
   }
