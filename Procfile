@@ -1,3 +1,3 @@
 
-web: target/universal/stage/bin/play-getting-started -Dhttp.port=${PORT}
+web: target/universal/stage/bin/citrine_demo -Dhttp.port=${PORT}
 
