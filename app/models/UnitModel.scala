@@ -17,9 +17,9 @@ object UnitModel {
 
   val degree = UnitModel("degree","°", "Plane angle", Math.PI / 180, "rad")
 
-  val minAngle = UnitModel("‘", "‘","Plane angle", Math.PI / 10800, "rad")
+  val minAngle = UnitModel("'", "'","Plane angle", Math.PI / 10800, "rad")
 
-  val second = UnitModel("second","“", "Plane angle", Math.PI / 648000, "rad")
+  val second = UnitModel("second","\"", "Plane angle", Math.PI / 648000, "rad")
 
   val hectare = UnitModel("hectare","ha", "area", 10000, "m2")
 
@@ -31,7 +31,7 @@ object UnitModel {
 
   val tonne = UnitModel("tonne","t", "mass", 1000, "kg")
 
-  val validUnits = mutable.Seq(minute, hour, day, degree, minAngle, second, hectare, litre, tonne)
+  val validUnits = mutable.Seq(hectare, hour, minute, day, degree, minAngle, second, litre, tonne)
 
   def extractName(queryString: String, i: Int): String = {
     val unitModel = validUnits(i)
